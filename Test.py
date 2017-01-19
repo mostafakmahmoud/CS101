@@ -1,16 +1,21 @@
-# We defined:
+# Define a procedure, replace_spy,
+# that takes as its input a list of
+# three numbers, and modifies the
+# value of the third element in the
+# input list to be one more than its
+# previous value.
 
-stooges = ['Moe','Larry','Curly']
+def replace_spy(x):
+    #return [x[0],x[1],x[2]+1]
+    x[2] = x[2]+1
 
-# but in some Stooges films, Curly was
-# replaced by Shemp.
+spy = [0,0,7]
 
-# Write one line of code that changes
-# the value of stooges to be:
+# In the test below, the first line calls your
+# procedure which will change spy, and the
+# second checks you have changed it.
+# Uncomment the top two lines below.
 
-['Moe','Larry','Shemp']
-
-# but does not create a new List
-# object.
-
-stooges[2] = 'Shemp'
+replace_spy(spy)
+print spy
+#>>> [0,0,8]
