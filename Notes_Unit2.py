@@ -58,14 +58,14 @@ def find_last(text, target):
         return a
 
 #Function fix_machine - Superhero:
-# Write a Python procedure fix_machine to take 2 string inputs
-# and returns the 2nd input string as the output if all of its
-# characters can be found in the 1st input string and "Give me
-# something that's not useless next time." if it's impossible.
-# Letters that are present in the 1st input string may be used
-# as many times as necessary to create the 2nd string (you
-# don't need to keep track of repeat usage).
-# Bonus: Solve in 1 line
+    # Write a Python procedure fix_machine to take 2 string inputs
+    # and returns the 2nd input string as the output if all of its
+    # characters can be found in the 1st input string and "Give me
+    # something that's not useless next time." if it's impossible.
+    # Letters that are present in the 1st input string may be used
+    # as many times as necessary to create the 2nd string (you
+    # don't need to keep track of repeat usage).
+    # Bonus: Solve in 1 line
 def fix_machine(debris, product):
     a = 0
     x = debris.find(product[a])
@@ -86,19 +86,19 @@ def fix_machine(debris, product):
     print "Test case 4: ", fix_machine('wsx0-=mttrhix', 't-shirt') # 't-shirt'
 
 #Function JUNGLE!:
-# By AnnaGajdova from forums
-# You are in the middle of a jungle.
-# Suddenly you see an animal coming to you.
-# Here is what you should do if the animal is:
-# zebra >> "Try to ride a zebra!"
-# cheetah >> If you are faster than a cheetah: "Run!"
-#            If you are not: "Stay calm and wait!".
-#            The speed of a cheetah is 115 km/h.
-# anything else >> "Introduce yourself!"
-# Define a procedure, jungle_animal,
-# that takes as input a string and a number,
-# an animal and your speed (in km/h),
-# and prints out what to do.
+    # By AnnaGajdova from forums
+    # You are in the middle of a jungle.
+    # Suddenly you see an animal coming to you.
+    # Here is what you should do if the animal is:
+    # zebra >> "Try to ride a zebra!"
+    # cheetah >> If you are faster than a cheetah: "Run!"
+    #            If you are not: "Stay calm and wait!".
+    #            The speed of a cheetah is 115 km/h.
+    # anything else >> "Introduce yourself!"
+    # Define a procedure, jungle_animal,
+    # that takes as input a string and a number,
+    # an animal and your speed (in km/h),
+    # and prints out what to do.
 def jungle_animal(animal, my_speed):
     if animal == 'zebra':
         return "Try to ride a zebra!"
@@ -115,14 +115,14 @@ def jungle_animal(animal, my_speed):
     #>>> "Introduce yourself!"
 
 #Function LEAP_YEAR_BABY:
-# By Ashwath from forums
-# A leap year baby is a baby born on Feb 29, which occurs only on a leap year.
-# Define a procedure is_leap_baby that takes 3 inputs: day, month and year
-# and returns True if the date is a leap day (Feb 29 in a valid leap year)
-# and False otherwise.
-# A year that is a multiple of 4 is a leap year unless the year is
-# divisible by 100 but not a multiple of 400 (so, 1900 is not a leap
-# year but 2000 and 2004 are).
+    # By Ashwath from forums
+    # A leap year baby is a baby born on Feb 29, which occurs only on a leap year.
+    # Define a procedure is_leap_baby that takes 3 inputs: day, month and year
+    # and returns True if the date is a leap day (Feb 29 in a valid leap year)
+    # and False otherwise.
+    # A year that is a multiple of 4 is a leap year unless the year is
+    # divisible by 100 but not a multiple of 400 (so, 1900 is not a leap
+    # year but 2000 and 2004 are).
 def is_leap_baby(day,month,year):
     # Write your code after this line.
     if year%4 == 0:

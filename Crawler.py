@@ -1,4 +1,16 @@
-#Goes over a page and extracts all the web links
+page = '''<html>
+    <body>
+    This is a test page for learning to crawl!
+    <p>
+    It is a good idea to
+    <a href="http://www.udacity.com/cs101x/crawling.html">learn to crawl</a>
+    before you try to
+    <a href="http://www.udacity.com/cs101x/walking.html">walk</a> or
+    <a href="http://www.udacity.com/cs101x/flying.html">fly</a>.
+    </p>
+    </body>
+    </html>
+    '''
 
 def get_next_target(S):
     start_link = S.find('<a href=')
@@ -17,3 +29,17 @@ def print_all_links(x):
             x = x[endpos:]
         else:
             break
+
+def get_all_links(x):
+    list1 = []
+    while True:
+        url, endpos = get_next_target(x)
+        if url:
+            list1.append(url)
+            x = x[endpos:]
+        else:
+            break
+    return list1
+
+links = get_all_links(page)
+print links[1]
