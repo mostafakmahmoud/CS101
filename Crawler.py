@@ -1,16 +1,10 @@
-page = '''<html>
-    <body>
-    This is a test page for learning to crawl!
-    <p>
-    It is a good idea to
-    <a href="http://www.udacity.com/cs101x/crawling.html">learn to crawl</a>
-    before you try to
-    <a href="http://www.udacity.com/cs101x/walking.html">walk</a> or
-    <a href="http://www.udacity.com/cs101x/flying.html">fly</a>.
-    </p>
-    </body>
-    </html>
-    '''
+import urllib2
+
+def get_page(url):
+    try:
+        return urllib2.urlopen(url).read()
+    except:
+        return ""
 
 def get_next_target(S):
     start_link = S.find('<a href=')
@@ -32,14 +26,16 @@ def print_all_links(x):
 
 def get_all_links(x):
     list1 = []
+    S = get_page(x)
     while True:
-        url, endpos = get_next_target(x)
+        url, endpos = get_next_target(S)
         if url:
             list1.append(url)
-            x = x[endpos:]
+            S = S[endpos:]
         else:
             break
     return list1
 
-links = get_all_links(page)
-print links[1]
+#page = get_page('https://www.udacity.com/cs101x/index.html')
+links = get_all_links('https://www.udacity.com/cs101x/index.html')
+print links
