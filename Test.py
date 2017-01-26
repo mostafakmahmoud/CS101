@@ -13,19 +13,28 @@
     # Note that the pages in the crawl may be in any order.
 import urllib2
 
-def crawl_web(seed):
+def crawl_web(seed, max_depth):
     tocrawl = [seed]
     crawled = []
+    final_list = []
     i = 0
+    depth_counter = 0
     while i < len(tocrawl):
-        print tocrawl[i]
-        print crawled[i]
         if tocrawl[i] not in crawled:
             crawled.append(tocrawl[i])
             tocrawl = tocrawl + get_all_links(tocrawl[i])
             i = i+1
         else:
             i = i+1
+    return final_list
+    depth_counter = depth_counter + 1
+
+
+    page = tocrawl.pop()
+    if page not in crawled:
+
+        union(tocrawl, get_all_links(get_page(page)))
+        crawled.append(page)
 
 def get_all_links(x):
     list1 = []
