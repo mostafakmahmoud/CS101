@@ -1,3 +1,7 @@
-mylist = ['a','b',['cc','dd',['eeee','fff']]]
+mylist = [
+['key1',['url1','url2']],
+['key2',['url11','url22']]
+]
+
 print mylist
-print 'fff' in mylist[2][2]
+print 'key1' in mylist

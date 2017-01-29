@@ -6,22 +6,18 @@
     #MUTATION
     #For <Name> in <List>:
         #   <Block>
-    #LIST OPERATIONS:
+
+#LIST OPERATIONS:
         #APPEND (adds another value - mutates the list passed to it)
             #LIST.append(ELEMENT)
-
         #+ (concatnates lists - doesnt mutate the lists passed to it)
             #LIST + LIST
-
         #Len - (number of elements in the list)
             #len(LIST)
-
         #Index (finds position of element in a list)
             #LIST.index(ELEMENT)
-
         #in (finds if element is in list)
             #VALUE in LIST - returns Boolean True and False
-
         #pop (mutates the list by removing and returning its last element.)
             #LIST.pop()
 
