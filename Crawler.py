@@ -1,37 +1,36 @@
 import urllib2
 
-def crawl_web(seed, maxpages):
+def crawl_web(seed):
     tocrawl = [seed]
     crawled = []
-    i = 0
-    while i < len(tocrawl) and len(crawled)<maxpages:
-        if tocrawl[i] not in crawled:
-            crawled.append(tocrawl[i])
-            tocrawl = tocrawl + get_all_links(tocrawl[i])
-            i = i+1
-        else:
-            i = i+1
-    return crawled
+    index = []
+    while tocrawl:
+        page = tocrawl.pop()
+        if page not in crawled:
+            content = get_page(page)
+            add_page_to_index(index, page, content)
+            union (tocrawl, get_all_links(content))
+            crawled.append(page)
+    return index
 
-def get_all_links(x):
+def get_all_links(page):
     list1 = []
-    S = get_page(x)
     while True:
-        url, endpos = get_next_target(S)
+        url, endpos = get_next_target(page)
         if url:
             list1.append(url)
-            S = S[endpos:]
+            page = page[endpos:]
         else:
             break
     return list1
 
-def get_next_target(S):
-    start_link = S.find('<a href=')
+def get_next_target(page):
+    start_link = page.find('<a href=')
     if start_link == -1:
         return None, 0
-    start_quote = S.find('"', start_link)
-    end_quote = S.find('"', start_quote+1)
-    url = S [start_quote+1 : end_quote]
+    start_quote = page.find('"', start_link)
+    end_quote = page.find('"', start_quote+1)
+    url = page[start_quote+1 : end_quote]
     return url, end_quote
 
 def get_page(url):
@@ -40,4 +39,30 @@ def get_page(url):
     except:
         return ""
 
-print crawl_web('http://www.tesla.com',10)
+def union(p,q):
+    for e in q:
+        if e not in p:
+            p.append(e)
+    return p
+
+def add_to_index(index, keyword, url):
+    #look if keyword is already in index, add url to list of urls.
+    for entry in index:
+        if entry[0] == keyword:
+            entry[1].append(url)
+            return
+    #if not found, add new entry.
+    index.append([keyword, [url]])
+
+def lookup(index,keyword):
+    for entry in index:
+        if entry[0] ==  keyword:
+            return entry[1]
+    return []
+
+def add_page_to_index(index,url,content):
+    words = content.split()
+    for word in words:
+        add_to_index(index, word, url)
+
+print crawl_web('https://www.udacity.com/cs101x/index.html')

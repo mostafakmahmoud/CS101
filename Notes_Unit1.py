@@ -3,6 +3,7 @@ len(string) #Length of String
 string.lower() #Convert to Lowercase
 string.upper() #Convert to Uppercase
 str(variable) #Convert non-strings to strings
+'string'.split()
 
 ## STRING FORMATTING WITH %:
 string_1 = "Camelot"
