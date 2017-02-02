@@ -65,4 +65,5 @@ def add_page_to_index(index,url,content):
     for word in words:
         add_to_index(index, word, url)
 
-print crawl_web('https://www.udacity.com/cs101x/index.html')
+myindex = crawl_web('https://www.udacity.com/cs101x/index.html')
+print lookup(myindex, 'Squeamish')

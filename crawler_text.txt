@@ -31,7 +31,7 @@ page content and adding urls to the word associated url list.
 crawl_web:
 takes a seed page url, calls get_all_links.
 Stores the returned urls and calls get_all_links on them.
-Keeps track of crawled pages to avoid repeatition
+Keeps track of crawled pages to avoid repetition
 
 lookup:
 looks in the index for the keyword passed.
