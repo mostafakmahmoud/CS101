@@ -13,10 +13,11 @@
 def add_to_index(index, keyword, url):
     for entry in index:
         if entry[0] == keyword:
-            entry[1].append(url)
-            return
+                if url not in entry[1]:
+                    entry[1].append(url)
+                    return
     # not found, add new keyword to index
-    index.append([keyword, [url]])
+        index.append([keyword, [url]])
 
 
 def get_page(url):
@@ -95,6 +96,6 @@ def lookup(index, keyword):
             return entry[1]
     return None
 
-#index = crawl_web("http://www.udacity.com/cs101x/index.html")
-#print lookup(index,"is")
+index = crawl_web("http://www.udacity.com/cs101x/index.html")
+print lookup(index,"is")
 #>>> ['http://www.udacity.com/cs101x/index.html']
