@@ -29,5 +29,4 @@ def spin_loop(n):
     while i < n:
         i = i+1
 
-
 print time_execution('spin_loop(10 ** 9)')[1]
