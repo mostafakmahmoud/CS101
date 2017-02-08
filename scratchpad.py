@@ -1,32 +1,7 @@
-#sample nested list
-mylist = [
-['key1',['url1','url2']],
-['key2',['url3','url4']],
-['key3',['url5','url6']]
-]
+def make_hashtable(nbuckets):
+    table = []
+    for i in range(0, nbuckets):
+        table.append([])
+    return table
 
-alphabet = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122]
-cap = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
-
-#Hash Function:
-#takes in a keyword and produces a number, that number
-#is a position where that keyword should appear.
-
-#<string> -- Hash_string -- Number
-#no of buckets
-
-import time
-
-
-def time_execution(code):
-    start = time.clock()
-    result = eval(code)
-    run_time = time.clock() - start
-    return result, run_time
-
-def spin_loop(n):
-    i = 0
-    while i < n:
-        i = i+1
-
-print time_execution('spin_loop(10 ** 9)')[1]
+print make_hashtable(3)
