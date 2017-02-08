@@ -1,6 +1,12 @@
 #DATA STRUCTURES
 #'string'.split()
 
+mylist = [
+['key1',['url1','url2']],
+['key2',['url3','url4']],
+['key3',['url5','url6']]
+]
+
 # Define a procedure, add_to_index,
     # that takes 3 inputs:
     # - an index: [[<keyword>,[<url>,...]],...]
