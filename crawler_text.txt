@@ -1,11 +1,17 @@
-"""
-
 INDEX:
 A nested list of keywords and urls those keywords are found.
 mylist = [
 ['key1',['url1','url2']],
 ['key2',['url3','url4']],
 ['key3',['url5','url6']]
+]
+
+HASHTABLE:
+A Sample Nested list of buckets with keywords and urls.
+htable = [
+[['key1',['url','url','url']],['key2',['url','url','url']],['key3',['url','url']]],
+[['key4',['url','url','url']],['key5',['url','url','url']],['key6',['url','url']]],
+[['key7',['url','url','url']],['key8',['url','url','url']],['key9',['url','url']]],
 ]
 
 get_all_links:
@@ -36,3 +42,12 @@ Keeps track of crawled pages to avoid repetition
 lookup:
 looks in the index for the keyword passed.
 returns list of urls associated with that keyword.
+
+hashtable_get_bucket:
+takes a hashtable and keyword, returns that bucket where that keyword is.
+
+make_hashtable:
+takes a number of buckets, returns a hashtable containing that many buckets.
+
+hash_string:
+takes a keyword and number of buckets, returns the bucket number where that keyword should be.
