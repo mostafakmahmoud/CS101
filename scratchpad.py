@@ -16,9 +16,14 @@ htable = [
 [['key4',['url','url','url']],['key5',['url','url','url']],['key6',['url','url']]],
 [['key7',['url','url','url']],['key8',['url','url','url']],['key9',['url','url']]],
 ]
+#print htable[0] #bucket
+#print htable[0][1] #entry
+#print htable [0][1][0] #key
+#print htable [0][1][1] #urls
+#print 'key' in htable [0][1][0]
 
-print htable[0] #bucket
-print htable[0][1] #entry
-print htable [0][1][0] #key
-print htable [0][1][1] #urls
-print 'key' in htable [0][1][0]
+elements2 = {}
+elements2['H'] = {'name': 'Hydrogen', 'number':1, 'weight': 1.00794}
+
+print elements2['H']['name']
+print 'name' in elements2['H']

@@ -8,6 +8,22 @@ def test_hash_function(func, keys, size):
             keys_used.append(w)
     return results
 
+def hashtable_lookup(htable, key):
+    bucket = hashtable_get_bucket(htable, key)
+    for entry in bucket:
+        if entry[0] == key:
+            return entry[1]
+    return None
+
+def hashtable_update(htable, key, value):
+    bucket = hashtable_get_bucket(htable, key)
+    for entry in bucket:
+        if entry[0] == key:
+            entry[1] = value
+            return
+    bucket.append([key,value])
+    return
+
 def hashtable_get_bucket(htable, key):
     return htable[hash_string(key, len(htable))]
 
@@ -31,28 +47,13 @@ def hashtable_add(htable,key,value):
     #gets bucket then appends the word to it.
     ##hasthable_get_bucket(htable, key).append([key, value])
 
-def hashtable_lookup(htable, key):
-    bucket = hashtable_get_bucket(htable, key)
-    for entry in bucket:
-        if key in entry:
-            return entry[1]
-    return None
+table = [[['Ellis', 11], ['Francis', 13]], [], [['Bill', 17], ['Zoe', 14]],
+[['Coach', 4]], [['Louis', 29], ['Nick', 2], ['Rochelle', 4]]]
 
-
-table = [
-[['Ellis', 11], ['Francis', 13]]
-, [],
-[['Bill', 17], ['Zoe', 14]],
-[['Coach', 4]],
-[['Louis', 29], ['Nick', 2], ['Rochelle', 4]]]
-
-print hashtable_lookup(table, 'Francis')
-#>>> 13
-
-print hashtable_lookup(table, 'Louis')
-#>>> 29
-
-print hashtable_lookup(table, 'Zoe')
-#>>> 14
-
-print hashtable_lookup(table, 'jjj')
+hashtable_update(table, 'Bill', 42)
+hashtable_update(table, 'Rochelle', 94)
+hashtable_update(table, 'Zed', 68)
+print table
+#>>> [[['Ellis', 11], ['Francis', 13]], [['Zed', 68]], [['Bill', 42],
+#>>> ['Zoe', 14]], [['Coach', 4]], [['Louis', 29], ['Nick', 2],
+#>>> ['Rochelle', 94]]]
