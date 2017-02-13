@@ -53,11 +53,11 @@ def add_to_index(index, keyword, url):
         #if not found, add new entry.
         index[keyword] = [url]
 
-def lookup(index,keyword):
-    for entry in index:
-        if entry[0] ==  keyword:
-            return entry[1]
-    return []
+def lookup(index, keyword):
+    if keyword in index:
+        return index[keyword]
+    else:
+        return None
 
 def add_page_to_index(index,url,content):
     words = content.split()
