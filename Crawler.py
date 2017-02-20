@@ -1,17 +1,20 @@
 import urllib2
 
-def crawl_web(seed):
-    tocrawl = [seed]
-    crawled = []
-    index = {}
-    while tocrawl:
-        page = tocrawl.pop()
-        if page not in crawled:
-            content = get_page(page)
-            add_page_to_index(index, page, content)
-            union (tocrawl, get_all_links(content))
-            crawled.append(page)
-    return index
+def crawl_web(seed): #returns index, graph of outlinks
+    tocrawl = [seed] #pages to be crawled starting with seed page
+    crawled = [] #Keeping track of crawled pages
+    index = {} #our index of pages and keywords
+    graph = {} #Urank - {url:[list of pages it links to]}
+    while tocrawl: #while there are pages left in tocrawl
+        page = tocrawl.pop() #get the last page from tocrawl
+        if page not in crawled: #check if its in crawled pages
+            content = get_page(page) #get the content
+            add_page_to_index(index, page, content) #updates index with words and url
+            outlinks = get_all_links(content) #gets all links from the content
+            graph[page] = outlinks
+            union (tocrawl, outlinks) #combines tocrawl and new outlinks.
+            crawled.append(page) #adds the crawled page to crawled list.
+    return index, graph
 
 def get_all_links(page):
     list1 = []

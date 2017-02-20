@@ -14,6 +14,14 @@ htable = [
 [['key7',['url','url','url']],['key8',['url','url','url']],['key9',['url','url']]],
 ]
 
+NODES:
+{url:[
+{'A':['B','C','D'],
+'B':[],
+'C':['A'],
+'D':[]
+}}
+
 get_all_links:
 keeps calling get_next_target until no url left in the page.
 
@@ -35,9 +43,11 @@ updates the index to include all of the word occurances found in the
 page content and adding urls to the word associated url list.
 
 crawl_web:
+#returns index, graph of outlinks
 takes a seed page url, calls get_all_links.
 Stores the returned urls and calls get_all_links on them.
 Keeps track of crawled pages to avoid repetition
+#Urank - {url:[list of pages it links to]}
 
 lookup:
 looks in the index for the keyword passed.
