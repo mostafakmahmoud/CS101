@@ -46,7 +46,8 @@ def iter_palindrome(s):
             return False
     return True
 
-# fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+#fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+#sum of numbers in fib sequence up to specified number.
 def fibonacci(n):
     if n == 0:
         return 0
@@ -55,6 +56,7 @@ def fibonacci(n):
     else:
         return fibonacci(n-1) + fibonacci(n-2)
 #Faster Iterative Fibonacci
+#returns list of Fibonacci sequence up to specified number.
 def fibonacci2(n):
     current = 0
     after = 1

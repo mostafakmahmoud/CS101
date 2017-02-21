@@ -16,6 +16,20 @@ def crawl_web(seed): #returns index, graph of outlinks
             crawled.append(page) #adds the crawled page to crawled list.
     return index, graph
 
+def compute_ranks(graph):
+    d = 0.8 #damping factor
+    t = 0 #time step
+    numloops = 10
+
+    ranks = {}
+    npages = len(graph)
+    for pages in graph:
+        ranks[page] = 1.0/ npages
+
+    for i in range
+
+
+
 def get_all_links(page):
     list1 = []
     while True:
