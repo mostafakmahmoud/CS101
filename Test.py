@@ -19,15 +19,27 @@ def crawl_web(seed): #returns index, graph of outlinks
 def compute_ranks(graph):
     d = 0.8 #damping factor
     t = 0 #time step
-    numloops = 10
-
+    numloops = 10 #Number of times we will go through relaxation
     ranks = {}
-    npages = len(graph)
-    for pages in graph:
-        ranks[page] = 1.0/ npages
+    npages = len(graph) #Number of pages that we crawled
+    
+    for pages in graph: #initialize each page.
+        ranks[page] = 1.0/ npages #maps each page to its current rank.
 
-    for i in range
-
+    #go through the number of times of numloops.
+    #Each time through this loop:
+        #update new ranks based on the formula using old ranks.
+    #end of the loop make ranks hold new ranks.
+    for i in range(0, numloops):
+        newranks = {}
+        for page in graph:
+            newrank = (1-d) / npages
+            #update by summing in the inline ranks
+            #
+            #
+            newranks[page] = newrank
+        ranks = newranks
+        return ranks
 
 
 def get_all_links(page):
