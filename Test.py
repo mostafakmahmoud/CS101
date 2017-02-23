@@ -22,11 +22,11 @@ def compute_ranks(graph):
     numloops = 10 #Number of times we will go through relaxation
     ranks = {}
     npages = len(graph) #Number of pages that we crawled
-    
+
     for pages in graph: #initialize each page.
         ranks[page] = 1.0/ npages #maps each page to its current rank.
 
-    #go through the number of times of numloops.
+    #Go through the number of times of numloops.
     #Each time through this loop:
         #update new ranks based on the formula using old ranks.
     #end of the loop make ranks hold new ranks.
@@ -34,9 +34,9 @@ def compute_ranks(graph):
         newranks = {}
         for page in graph:
             newrank = (1-d) / npages
-            #update by summing in the inline ranks
-            #
-            #
+            for node in graph:
+                if page in graph[node]:
+                    newrank = newrank + d * (ranks[nodes]/ len(graph[node]))
             newranks[page] = newrank
         ranks = newranks
         return ranks
