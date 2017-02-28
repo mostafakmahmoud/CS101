@@ -67,16 +67,3 @@ def measure_udacity(p):
         if n[0] == 'U':
             x = x+1
     return x
-
-#my crawler
-def crawl_web(seed):
-    tocrawl = [seed]
-    crawled = []
-    i = 0
-    while i < len(tocrawl):
-        if tocrawl[i] not in crawled:
-            crawled.append(tocrawl[i])
-            tocrawl = tocrawl + get_all_links(tocrawl[i])
-            i = i+1
-        else:
-            i = i+1
