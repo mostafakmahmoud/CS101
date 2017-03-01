@@ -62,7 +62,7 @@ def fibonacci2(n):
     return x
 
 #NODES:
-{url:[
+#{url:[
 {'A':['B','C','D'],
 'B':[],
 'C':['A'],
@@ -70,7 +70,7 @@ def fibonacci2(n):
 }}
 
 #INDEX:
-A nested list of keywords and urls those keywords are found.
+#A nested list of keywords and urls those keywords are found.
 mylist = [
 ['key1',['url1','url2']],
 ['key2',['url3','url4']],
@@ -78,7 +78,7 @@ mylist = [
 ]
 
 #HASHTABLE:
-A Sample Nested list of buckets with keywords and urls.
+#A Sample Nested list of buckets with keywords and urls.
 htable = [
 [['key1',['url','url','url']],['key2',['url','url','url']],['key3',['url','url']]],
 [['key4',['url','url','url']],['key5',['url','url','url']],['key6',['url','url']]],

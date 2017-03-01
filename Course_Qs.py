@@ -20,3 +20,22 @@ def date_converter(dictionary, string):
     swedish = {1:"januari", 2:"februari", 3:"mars", 4:"april", 5:"maj",
     6:"juni", 7:"juli", 8:"augusti", 9:"september",10:"oktober",
     11:"november", 12:"december"}
+
+def longest_repetition(input_list):
+    #takes as input a list, and returns
+    #the element that has the has the most
+    # consecutive repetitions.
+    best_element = None
+    length = 0
+    current = None
+    current_length = 0
+    for element in input_list:
+        if current != element:
+            current = element
+            current_length = 1
+        else:
+            current_length = current_length + 1
+        if current_length > length:
+            best_element = current
+            length = current_length
+    return best_element
