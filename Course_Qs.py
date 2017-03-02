@@ -39,3 +39,25 @@ def longest_repetition(input_list):
             best_element = current
             length = current_length
     return best_element
+
+def is_list(p):
+    #It returns True if
+    # p is a list and False if it is not.
+    return isinstance(p, list)
+
+def deep_reverse(input_list):
+    # Define a procedure, deep_reverse, that takes as input a list,
+    # and returns a new list that is the deep reverse of the input list.
+    # This means it reverses all the elements in the list, and if any
+    # of those elements are lists themselves, reverses all the elements
+    # in the inner list, all the way down.
+
+    final_result = []
+    i = len(input_list)-1
+    while i>= 0:
+        if is_list(input_list[i]) == True:
+            final_result.append(deep_reverse(input_list[i]))
+        else:
+            final_result.append(input_list[i])
+        i = i-1
+    return final_result
