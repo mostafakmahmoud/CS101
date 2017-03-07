@@ -92,7 +92,37 @@ Freda likes to play Starfleet Commander, Ninja Hamsters, Seahorse Adventures."
 #
 # Return:
 #   The newly created network data structure
-def create_data_structure(string_input):
+
+def create_data_structure(string):
+    #Parses a block of text and stores relevant information into a data structure.
+    #Returns the data structure (network)
+
+    added_names = []
+    network = {}
+
+    while len(string) > 1:
+        name = string[0:string.find(" ")]            #Get Subject Name
+        #print name                                  #uncomment for testing
+        if name not in added_names:                  #Check if already in added_names
+            added_names.append(name)                 #If not, add to added_names
+            network[name]={'Friends':[], 'Plays':[]} #Create an entry for the name
+
+        if string.find('connected to') != -1:        #Checks if the user has any connections
+            Friends = string[string.find('connected to')+13: string.find('.')].split(', ') #Get Friends text and split by ,
+            network[name]['Friends'] = Friends       #Add friends under subject name
+        else:
+            network[name]['Friends'] = []            #Add an empty list if there are no connections.
+        #print network[name]['Friends']              #uncomment for testing
+
+        if string.find('play') != -1:                #Checks if the users plays any games.
+            Plays = string[string.find('play')+5:string.find('.',string.find('play'))].split(', ') #Get Plays text and split by ,
+            network[name]['Plays'] = Plays           #Add plays under subject name
+        else:
+            network[name]['Plays'] = []              #Add an empty list if there are no games.
+        #print network[name]['Plays']                #uncomment for testing
+
+        string = string[string.find('.',string.find('play'))+1:] #reassign string minus last user.
+
     return network
 
 # ----------------------------------------------------------------------------- #
@@ -115,7 +145,13 @@ def create_data_structure(string_input):
 #   - If the user has no connections, return an empty list.
 #   - If the user is not in network, return None.
 def get_connections(network, user):
-	return []
+    #Takes a network and user name.
+    #Returns a list of all the connections that user has.
+
+    if user in network:
+        return network[user]['Friends']
+    else:
+        return None
 
 # -----------------------------------------------------------------------------
 # get_games_liked(network, user):
@@ -130,7 +166,10 @@ def get_connections(network, user):
 #   - If the user likes no games, return an empty list.
 #   - If the user is not in network, return None.
 def get_games_liked(network,user):
-    return []
+    if user in network:
+        return network[user]['Plays']
+    else:
+        return None
 
 # -----------------------------------------------------------------------------
 # add_connection(network, user_A, user_B):
@@ -147,7 +186,14 @@ def get_games_liked(network,user):
 #   - If a connection already exists from user_A to user_B, return network unchanged.
 #   - If user_A or user_B is not in network, return False.
 def add_connection(network, user_A, user_B):
-	return network
+    #Adds a connection from user_A to user_B.
+    if user_A not in network or user_B not in network: #checks both users are in the network
+        return False
+    elif user_B in network[user_A]['Friends']: #checks if connection already exists
+        return network
+    else:
+        network[user_A]['Friends'].append(user_B) #makes new connection
+        return network
 
 # -----------------------------------------------------------------------------
 # add_new_user(network, user, games):
