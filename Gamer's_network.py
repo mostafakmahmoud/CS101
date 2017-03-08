@@ -3,48 +3,47 @@
 # Gaming Social Network       #
 # --------------------------- #
 #
-
 # Background
 # ==========
-# You and your friend have decided to start a company that hosts a gaming
-# social network site. Your friend will handle the website creation (they know
-# what they are doing, having taken our web development class). However, it is
-# up to you to create a data structure that manages the game-network information
-# and to define several procedures that operate on the network.
-#
-# In a website, the data is stored in a database. In our case, however, all the
-# information comes in a big string of text. Each pair of sentences in the text
-# is formatted as follows:
-#
-# <user> is connected to <user1>, ..., <userM>.<user> likes to play <game1>, ..., <gameN>.
-#
-# For example:
-#
-# John is connected to Bryant, Debra, Walter.John likes to play The Movie: The Game, The Legend of Corgi, Dinosaur Diner.
-#
-# Note that each sentence will be separated from the next by only a period. There will
-# not be whitespace or new lines between sentences.
-#
-# Your friend records the information in that string based on user activity on
-# the website and gives it to you to manage. You can think of every pair of
-# sentences as defining a user's profile.
-#
-# Consider the data structures that we have used in class - lists, dictionaries,
-# and combinations of the two (e.g. lists of dictionaries). Pick one that
-# will allow you to manage the data above and implement the procedures below.
-#
-# You may assume that <user> is a unique identifier for a user. For example, there
-# can be at most one 'John' in the network. Furthermore, connections are not
-# symmetric - if 'Bob' is connected to 'Alice', it does not mean that 'Alice' is
-# connected to 'Bob'.
-#
+    # You and your friend have decided to start a company that hosts a gaming
+    # social network site. Your friend will handle the website creation (they know
+    # what they are doing, having taken our web development class). However, it is
+    # up to you to create a data structure that manages the game-network information
+    # and to define several procedures that operate on the network.
+    #
+    # In a website, the data is stored in a database. In our case, however, all the
+    # information comes in a big string of text. Each pair of sentences in the text
+    # is formatted as follows:
+    #
+    # <user> is connected to <user1>, ..., <userM>.<user> likes to play <game1>, ..., <gameN>.
+    #
+    # For example:
+    #
+    # John is connected to Bryant, Debra, Walter.John likes to play The Movie: The Game, The Legend of Corgi, Dinosaur Diner.
+    #
+    # Note that each sentence will be separated from the next by only a period. There will
+    # not be whitespace or new lines between sentences.
+    #
+    # Your friend records the information in that string based on user activity on
+    # the website and gives it to you to manage. You can think of every pair of
+    # sentences as defining a user's profile.
+    #
+    # Consider the data structures that we have used in class - lists, dictionaries,
+    # and combinations of the two (e.g. lists of dictionaries). Pick one that
+    # will allow you to manage the data above and implement the procedures below.
+    #
+    # You may assume that <user> is a unique identifier for a user. For example, there
+    # can be at most one 'John' in the network. Furthermore, connections are not
+    # symmetric - if 'Bob' is connected to 'Alice', it does not mean that 'Alice' is
+    # connected to 'Bob'.
+
 # Project Description
 # ====================
-# Your task is to complete the procedures according to the specifications below
-# as well as to implement a Make-Your-Own procedure (MYOP). You are encouraged
-# to define any additional helper procedures that can assist you in accomplishing
-# a task. You are encouraged to test your code by using print statements and the
-# Test Run button.
+    # Your task is to complete the procedures according to the specifications below
+    # as well as to implement a Make-Your-Own procedure (MYOP). You are encouraged
+    # to define any additional helper procedures that can assist you in accomplishing
+    # a task. You are encouraged to test your code by using print statements and the
+    # Test Run button.
 # -----------------------------------------------------------------------------
 
 # Example string input. Use it to test your code.
@@ -213,7 +212,12 @@ def add_connection(network, user_A, user_B):
 #   - If the user already exists in network, return network *UNCHANGED* (do not change
 #     the user's game preferences)
 def add_new_user(network, user, games):
-    return network
+    #Creates user profile and adds it to network, along with game preferences.
+    if user in network:                             #check if user is in network:
+        return network                              #return network as is
+    else:                                           #if not:
+        network[user]={'Friends':[], 'Plays':games} #create new user
+        return network
 
 # -----------------------------------------------------------------------------
 # get_secondary_connections(network, user):
@@ -233,8 +237,22 @@ def add_new_user(network, user, games):
 #   It is OK if a user's list of secondary connections includes the user
 #   himself/herself. It is also OK if the list contains a user's primary
 #   connection that is a secondary connection as well.
+
 def get_secondary_connections(network, user):
-	return []
+    #Finds all the secondary connections (i.e. connections of connections) of a
+    #given user.
+    #removes duplicate values.
+    sec_conn = []                               #results list
+    if user not in network:
+        return None
+    elif network[user]['Friends'] == []:        #checks if user has friends
+        return network[user]['Friends']
+    else:
+        for each in network[user]['Friends']:           #for each connection in primary friends:
+            for sec_each in network[each]['Friends']:   #for each of their connections
+                if sec_each not in sec_conn:            #if not already added to sec_conn
+                    sec_conn.append(sec_each)           #add it
+    return sec_conn
 
 # -----------------------------------------------------------------------------
 # count_common_connections(network, user_A, user_B):
@@ -249,7 +267,14 @@ def get_secondary_connections(network, user):
 #   The number of connections in common (as an integer).
 #   - If user_A or user_B is not in network, return False.
 def count_common_connections(network, user_A, user_B):
-    return 0
+    #Finds the number of people that user_A and user_B have in common.
+    count = 0
+    user_A_conn = network[user_A]['Friends']    #gets user_A Friends
+    user_B_conn = network[user_B]['Friends']    #gets user_B Friends
+    for each in user_A_conn:                    #for each friend:
+        if each in user_B_conn:                 #if in B list:
+            count = count + 1                   #increase the count by 1
+    return count
 
 # -----------------------------------------------------------------------------
 # find_path_to_friend(network, user_A, user_B):

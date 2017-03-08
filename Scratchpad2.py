@@ -91,9 +91,40 @@ def add_connection(network, user_A, user_B):
         return network
 
 def add_new_user(network, user, games):
+    if user in network:
+        return network
+    else:
+        network[user]={'Friends':[], 'Plays':games}
+        return network
 
+def get_secondary_connections(network, user):
+    #Finds all the secondary connections (i.e. connections of connections) of a
+    #given user.
+    #removes duplicate values.
+    sec_conn = []                               #results list
+    if user not in network:
+        return None
+    elif network[user]['Friends'] == []:        #checks if user has friends
+        return network[user]['Friends']
+    else:
+        for each in network[user]['Friends']:           #for each connection in primary friends:
+            for sec_each in network[each]['Friends']:   #for each of their connections
+                if sec_each not in sec_conn:            #if not already added to sec_conn
+                    sec_conn.append(sec_each)           #add it
+    return sec_conn
+
+def count_common_connections(network, user_A, user_B):
+    #Finds the number of people that user_A and user_B have in common.
+    count = 0
+    user_A_conn = network[user_A]['Friends']    #gets user_A Friends
+    user_B_conn = network[user_B]['Friends']    #gets user_B Friends
+    for each in user_A_conn:                    #for each friend:
+        if each in user_B_conn:                 #if in B list:
+            count = count + 1                   #increase the count by 1
+    return count
 
 network = create_data_structure(string)
 #print network
-#print network['Debra']
-print get_connections(network, 'Debra')
+print network['Mercedes']['Friends']
+print network['John']['Friends']
+print count_common_connections(network, "Mercedes", "John")
